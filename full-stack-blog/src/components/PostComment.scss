@@ -1,0 +1,17 @@
+label{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 10px;
+    textarea{
+        padding: 5px;
+    }
+}
+.postComment{
+    margin-left: 35px;
+    button{
+        display: inline-block;
+        margin-left: 10px;
+        margin-bottom: 20px;
+    }
+}

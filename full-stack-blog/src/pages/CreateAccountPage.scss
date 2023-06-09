@@ -1,0 +1,25 @@
+.registerPage {
+    input {
+        display: block;
+        margin: 10px 0;
+    }
+    .apply {
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+    }
+    button {
+        border-radius: 20%;
+        background-color: whitesmoke;
+        color: black;
+    }
+    a {
+        padding: 2px;
+    }
+    a:hover {
+        box-shadow: 0 0 10px 5px whitesmoke;
+    }
+    .error {
+        color: red;
+    }
+}

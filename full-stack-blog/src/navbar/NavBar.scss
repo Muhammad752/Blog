@@ -1,0 +1,42 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 5px black;
+    border-bottom-style: outset;
+    ul {
+        display: flex;
+        margin: 0;
+        li {
+            text-decoration: none;
+            list-style: none;
+        }
+        li:hover {
+            background-color: black;
+            color: white;
+        }
+    }
+    a {
+        display: inline-block;
+        font-size: 30px;
+        font-family: 'Bebas Neue', sans-serif;
+        color: inherit;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-decoration: none;
+        &:active {
+            background-color: black;
+            color: white;
+        }
+    }
+    .newArt {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.modal-content {
+    p {
+        padding: 0;
+        margin: 0;
+    }
+}
