@@ -13,14 +13,20 @@ const Articles = () => {
     // const params=useParams();
     // const articleId=params.articleId;
     const { articleId } = useParams();
-    const { user, isLoading } = useUser();
     // const article = articles.find(
     //     (article) => article.name === articleId
     // );
+    const nav = useNavigate();
+    const { user, isLoading } = useUser();
     const [articleInfo, setArticleInfo] = useState({
         upvotes: 0,
         comments: [],
     });
+
+    function toLogin() {
+        nav('/login');
+    }
+
     useEffect(() => {
         async function loadArticle() {
             const token = user && (await user.getIdToken());
@@ -70,7 +76,12 @@ const Articles = () => {
                         Upvote +
                     </button>
                 ) : (
-                    <button>Log in to upvote</button>
+                    <button
+                        onClick={toLogin}
+                        className="btn btn-light"
+                    >
+                        Log in to upvote
+                    </button>
                 )}
             </div>
             {/* {article.content.map((paragraph, index) => (
@@ -92,7 +103,12 @@ const Articles = () => {
                     }
                 />
             ) : (
-                <button>Login to add a comment</button>
+                <button
+                    onClick={toLogin}
+                    className="btn btn-light"
+                >
+                    Login to add a comment
+                </button>
             )}
         </>
     );

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 
 const ArticlesList = ({ articles }) => {
-    console.log('this is article' + articles[0].text);
+    console.log(articles);
     return (
         <>
             {articles.map((value) => (
@@ -13,7 +13,7 @@ const ArticlesList = ({ articles }) => {
                 >
                     <p>{value.name.toUpperCase()}</p>
                     <p className="content-preview">
-                        {value.content.substring(0, 150)}...
+                        {value.content.substring(0, 250)}...
                     </p>
                 </Link>
             ))}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MdPostAdd } from 'react-icons/md';
 import { FaRegAddressBook } from 'react-icons/fa';
 import AddDailyNote from '../components/AddDailyNote';
+import AddArticle from '../components/Add an article/AddArticle';
 import './NavBar.scss';
 
 const NavBar = () => {
@@ -34,10 +35,16 @@ const NavBar = () => {
                     >
                         <FaRegAddressBook /> Add the day
                     </button>
-                    <button className="m-2 btn btn-success">
+                    <button
+                        type="button"
+                        className="m-2 btn btn-success"
+                        data-bs-toggle="modal"
+                        data-bs-target="#articleModal"
+                    >
                         <MdPostAdd /> Add an article
                     </button>
                     <AddDailyNote />
+                    <AddArticle />
                 </div>
             </nav>
         </>

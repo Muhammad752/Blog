@@ -153,7 +153,7 @@ app.post("/api/articles/post",async (req,res)=>{
   console.log(newArticle);
   const title =newArticle.title
   await db.collection("articles").insertOne(newArticle)
-  const note = await db.collection("artticles").findOne({title})
+  const note = await db.collection("articles").findOne({title})
 
   if(note){
     console.log(note);

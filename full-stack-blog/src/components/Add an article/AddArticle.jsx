@@ -1,25 +1,35 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useState, useEffect } from 'react';
 
-const AddDailyNote = () => {
+const AddArticle = () => {
     const [message, setMessage] = useState('');
+    const [name, setName] = useState('');
     const [title, setTitle] = useState('');
-    const [currentTime, setCurrentTime] = useState(
-        new Date()
-    );
-
+    const [currentTime, setCurrentTime] = useState(new Date());
+    const [words, setWords] = useState();
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentTime(new Date());
         }, 1000);
     });
 
+    function giveLength(str) {
+        return str.length;
+    }
+
     const postIt = async () => {
         const date = new Date();
         const res = await axios.post(
-            'http://localhost:8000/api/daily_notes/post',
-            { title: title, date: date, text: message }
+            'http://localhost:8000/api/articles/post',
+            {
+                title: title,
+                name: name,
+                date: date,
+                content: message,
+                upvotes: 0,
+                comments: [],
+            }
         );
         setMessage('');
         setTitle('');
@@ -28,7 +38,7 @@ const AddDailyNote = () => {
     return (
         <div
             className="modal fade"
-            id="exampleModal"
+            id="articleModal"
             tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
@@ -40,7 +50,7 @@ const AddDailyNote = () => {
                             className="modal-title fs-5"
                             id="exampleModalLabel"
                         >
-                            How did you spent your day
+                            Write your expirience
                         </h1>
                         <button
                             type="button"
@@ -51,19 +61,26 @@ const AddDailyNote = () => {
                     </div>
                     <div className="ms-4 d-flex flex-column">
                         <p>{currentTime.toDateString()}</p>
-                        <p>
-                            {currentTime.toLocaleTimeString()}
-                        </p>
+                        <p>{currentTime.toLocaleTimeString()}</p>
                     </div>
                     <div className="modal-body">
+                        <div className="ms-2 d-flex mb-2 gap-3">
+                            <span>Name:</span>
+                            <input
+                                autoFocus
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                type="text"
+                                name=""
+                                id=""
+                            />
+                        </div>
                         <div className="ms-2 d-flex mb-2 gap-3">
                             <span>Title:</span>
                             <input
                                 autoFocus
                                 value={title}
-                                onChange={(e) =>
-                                    setTitle(e.target.value)
-                                }
+                                onChange={(e) => setTitle(e.target.value)}
                                 type="text"
                                 name=""
                                 id=""
@@ -79,12 +96,14 @@ const AddDailyNote = () => {
                             cols="60.5"
                             rows="10"
                             value={message}
-                            onChange={(e) =>
-                                setMessage(e.target.value)
-                            }
+                            onChange={(e) => {
+                                setMessage(e.target.value);
+                                setWords(e.target.value);
+                            }}
                         ></textarea>
                     </div>
                     <div className="modal-footer">
+                        <h3 className="">{words ? words.length : ' '}</h3>
                         <button
                             type="button"
                             className="btn btn-secondary"
@@ -106,4 +125,4 @@ const AddDailyNote = () => {
     );
 };
 
-export default AddDailyNote;
+export default AddArticle;
