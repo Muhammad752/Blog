@@ -2,46 +2,34 @@ import articles from './article-content';
 import './ArticleList.scss';
 import ArticlesList from '../components/ArticlesList';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const ArticleList = () => {
-    const [articleInfo, setArticleInfo] = useState({
-        upvotes: 0,
-        comments: [],
-    });
+    const [articleInfo, setArticleInfo] = useState();
     useEffect(() => {
         async function loadArticle() {
-            const token = user && (await user.getIdToken());
-            console.log('user is ' + user);
-            console.log(token);
-            const headers = token
-                ? { authtoken: token }
-                : {};
             const response = await axios.get(
-                `http://localhost:8000/api/articles/${articleId}`,
-                {
-                    headers,
-                }
+                `http://localhost:8000/api/articles/`
             );
             const newArticle = response.data;
+            console.log('use effecting');
+            console.log(newArticle);
             setArticleInfo(newArticle);
         }
         loadArticle();
     }, []);
     console.log(articleInfo);
-    return (
-        <>
-            {articleInfo.map((value) => (
+    if (articleInfo)
+        return (
+            <>
                 <>
-                    <h2 className="header">
-                        This is articles list page
-                    </h2>
+                    <h2 className="header">This is articles list page</h2>
                     <ul>
-                        <ArticlesList articles={articles} />
+                        <ArticlesList articles={articleInfo} />
                     </ul>
                 </>
-            ))}
-        </>
-    );
+            </>
+        );
 };
 
 export default ArticleList;

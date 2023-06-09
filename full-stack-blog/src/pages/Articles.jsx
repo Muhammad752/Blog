@@ -26,9 +26,7 @@ const Articles = () => {
             const token = user && (await user.getIdToken());
             console.log('user is ' + user);
             console.log(token);
-            const headers = token
-                ? { authtoken: token }
-                : {};
+            const headers = token ? { authtoken: token } : {};
             const response = await axios.get(
                 `http://localhost:8000/api/articles/${articleId}`,
                 {
@@ -54,9 +52,7 @@ const Articles = () => {
 
     return (
         <>
-            <h2 className="article-title">
-                {articleInfo.title}
-            </h2>
+            <h2 className="article-title">{articleInfo.title}</h2>
             <div
                 className="ms-5"
                 style={{
@@ -65,10 +61,7 @@ const Articles = () => {
                     gap: '20px',
                 }}
             >
-                <h5>
-                    The articles has {articleInfo.upvotes}{' '}
-                    upvote(s)
-                </h5>
+                <h5>The articles has {articleInfo.upvotes} upvote(s)</h5>
                 {user ? (
                     <button
                         className="btn btn-secondary"
@@ -90,9 +83,7 @@ const Articles = () => {
                 </p>
             ))} */}
             {articleInfo.content}
-            <ComponentsList
-                comments={articleInfo.comments}
-            />
+            <ComponentsList comments={articleInfo.comments} />
             {user ? (
                 <PostComment
                     articleName={articleId}
