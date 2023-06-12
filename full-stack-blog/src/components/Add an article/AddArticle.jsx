@@ -31,6 +31,7 @@ const AddArticle = () => {
                 comments: [],
             }
         );
+        setName('');
         setMessage('');
         setTitle('');
     };

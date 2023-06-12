@@ -12,13 +12,10 @@ const ArticleList = () => {
                 `http://localhost:8000/api/articles/`
             );
             const newArticle = response.data;
-            console.log('use effecting');
-            console.log(newArticle);
             setArticleInfo(newArticle);
         }
         loadArticle();
-    }, []);
-    console.log(articleInfo);
+    }, [articleInfo]);
     if (articleInfo)
         return (
             <>

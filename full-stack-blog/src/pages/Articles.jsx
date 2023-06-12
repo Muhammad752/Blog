@@ -43,7 +43,7 @@ const Articles = () => {
             setArticleInfo(newArticle);
         }
         loadArticle();
-    }, []);
+    }, [isLoading, user]);
 
     const addUpvote = async () => {
         const res = await axios.put(
